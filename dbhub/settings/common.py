@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-
+    "django_tables2",
+    "django_filters",
     'apps.schema',
 )
 
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'dbhub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
