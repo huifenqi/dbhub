@@ -38,8 +38,8 @@ class Column(models.Model):
 
     table = models.ForeignKey(Table)
     name = models.CharField(max_length=100, help_text=u'列名')
-    data_type = models.CharField(max_length=100, help_text=u'数据类型')
-    is_null = models.NullBooleanField(choices=NULL_TYPES, help_text=u'可空')
+    data_type = models.CharField(max_length=100, help_text=u'数据类型', null=True, blank=True)
+    is_null = models.NullBooleanField(choices=NULL_TYPES, help_text=u'可空', null=True, blank=True)
     default_value = models.CharField(max_length=1000, help_text=u'默认值', null=True, blank=True)
     comment = models.CharField(max_length=5000, help_text=u'注释', null=True, blank=True)
 
