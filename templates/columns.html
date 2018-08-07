@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>django_tables2 with semantic template example</title>
+    <title>{{ title }}</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
     <link rel="stylesheet" type="text/css"
@@ -13,7 +13,7 @@
 <body>
 <div class="ui container">
     {% block body %}
-        <h2>Database schema hub</h2>
+        <h1 id="title">{{ title }}</h1>
         <form action="" method="get" class="ui form dropdown">
             <div class="inline field">
                 {{ filter.form.as_p }}
@@ -21,14 +21,40 @@
             </div>
         </form>
         {% render_table table %}
+        &nbsp;
     {% endblock %}
 </div>
 </body>
+<style>
+    #title {
+        margin-top: 10px;
+    }
+
+    #id_word {
+        margin-bottom: 10px;
+    }
+
+    @media only screen and (min-width: 1500px) {
+        .ui.container {
+            width: 1427px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+
+    @media only screen and (min-width: 1800px) {
+        .ui.container {
+            width: 1727px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+</style>
 <script>
     $(document).ready(function () {
         $('#id_table').select2({
             placeholder: "Select a table",
-            allowClear: true,
+            allowClear: true
         });
     });
     $('#id_database').addClass('ui dropdown');
@@ -36,9 +62,4 @@
     $('#id_word').parent('p').css({'vertical-align': 'top', 'margin-top': '2px'});
     $('.ui.form .inline.field>:first-child').css({'margin': '0 1px 0 0'});
 </script>
-<style>
-    #id_word {
-        margin-bottom: 10px;
-    }
-</style>
 </html>

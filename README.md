@@ -4,9 +4,7 @@
 
 This project has the following basic apps:
 
-* App1 (short desc)
-* App2 (short desc)
-* App3 (short desc)
+* schema (manage table schema like wiki but automatically)
 
 ## Installation
 
