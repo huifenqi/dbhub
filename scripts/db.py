@@ -17,14 +17,14 @@ def build(database):
         dialect = database.config.split(':')[0]
         table_info = table.dialect_options[dialect]._non_defaults
         t, created = Table.objects.get_or_create(database=database, name=table.name)
-        t.engine = table_info['engine']
-        t.charset = table_info['default charset']
+        t.engine = table_info.get('engine', '')
+        t.charset = table_info.get('default charset', '')
         t.comment = table.comment
         t.save()
         for column in table.columns:
             default_value = column.server_default.arg if column.server_default else None
             c, created = Column.objects.get_or_create(table=t, name=column.name)
-            c.data_type = column.type
+            c.data_type = repr(column.type)
             c.is_null = column.nullable
             c.default_value = default_value
             c.comment = column.comment
