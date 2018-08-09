@@ -2,4 +2,4 @@
 
 from .common import *
 
-TITLE = '会分期数据库定义查看系统'
+TITLE = '[DEMO]dbhub数据库定义'
