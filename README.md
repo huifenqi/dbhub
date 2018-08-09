@@ -1,5 +1,3 @@
-
-
 # dbhub
 
 This project has the following basic apps:
@@ -19,4 +17,4 @@ Install dependencies:
 
 Run server:
 
-`python manage.py runserver --settings=dbhub.settings.development`
+`python manage.py runserver --settings=dbhub.settings.dev`
