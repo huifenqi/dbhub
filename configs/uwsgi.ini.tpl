@@ -10,4 +10,4 @@ max-requests = 5000
 single-interpreter = true
 enable-threads = true
 env = DJANGO_SETTINGS_MODULE="dbhub.settings.{env}"
-virtualenv = "/data/www/{project}/venv/"
+virtualenv = "/data/www/{project_name}/venv/"
