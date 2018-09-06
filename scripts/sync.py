@@ -45,7 +45,7 @@ def build(database):
 
 
 def run():
-    databases = Database.objects.all()
+    databases = Database.objects.filter(enable=True)
     for database in databases:
         build(database)
 

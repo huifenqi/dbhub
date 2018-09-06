@@ -3,3 +3,4 @@
 from .common import *
 
 TITLE = '[DEMO]dbhub数据库定义'
+DEBUG = False
