@@ -4,7 +4,8 @@ from models import Database, Table, Column, Index
 
 
 class DatabaseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'config', 'engine', 'charset', 'comment')
+    list_display = ('name', 'config', 'engine', 'charset', 'comment', 'enable')
+    list_editable = ('config', 'enable')
 
 
 class TableAdmin(admin.ModelAdmin):
