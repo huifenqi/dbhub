@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for dbhub project.
 
@@ -106,3 +107,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR + '/../static/'
+
+TITLE = '[DEMO]dbhub数据库定义'
+DB_INSTANCES = ['mysql://test:Test@hfq@rm-2ze41lui7lm025267o.mysql.rds.aliyuncs.com:3306/']
