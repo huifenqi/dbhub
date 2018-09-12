@@ -2,5 +2,5 @@
 
 from .common import *
 
-TITLE = '[DEMO]dbhub数据库定义'
+TITLE = '会分期数据库定义'
 DEBUG = False

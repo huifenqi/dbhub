@@ -1,4 +1,5 @@
-from sqlalchemy import create_engine
+from django.conf import settings
+from sqlalchemy import create_engine, inspect
 from sqlalchemy import MetaData
 
 from apps.schema.models import Database, Table, Column, Index
@@ -44,7 +45,21 @@ def build(database):
             i.save()
 
 
+def init_databases():
+    for instance in settings.DB_INSTANCES:
+        engine = create_engine(instance)
+        insp = inspect(engine)
+        db_list = insp.get_schema_names()
+        dbs = set(db_list) - {'information_schema', 'performance_schema', 'mysql', 'sys'}
+        for db in dbs:
+            config = '{}{}?charset=utf8'.format(instance, db)
+            d, created = Database.objects.get_or_create(name=db)
+            d.config = config
+            d.save()
+
+
 def run():
+    init_databases()
     databases = Database.objects.filter(enable=True)
     for database in databases:
         build(database)
