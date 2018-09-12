@@ -26,7 +26,7 @@ SECRET_KEY = '7@$-=s^akdzw5$02*=q#9@2@7otk%d3u3j3cm7rt)mc=wg2g0!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -108,5 +108,5 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR + '/../static/'
 
-TITLE = '[DEMO]dbhub数据库定义'
+TITLE = '[DEMO] database dbhub schema'
 DB_INSTANCES = []

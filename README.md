@@ -1,5 +1,7 @@
 # dbhub
 
+![demo](./screenshoot.png)
+
 This project has the following basic apps:
 
 * schema (manage table schema like wiki but automatically)
@@ -15,6 +17,20 @@ Install dependencies:
 
 `pip install -r requirements.txt`
 
-Run server:
+## Support dialects
+
+* Firebird
+* Microsoft SQL Server
+* MySQL
+* Oracle
+* PostgreSQL
+* SQLite
+* Sybase
+
+## Init databases:
+
+`python manage.py runscript sync`
+
+## Run server:
 
 `python manage.py runserver --settings=dbhub.settings.dev`
