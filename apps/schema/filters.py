@@ -6,7 +6,7 @@ from .models import Database, Table, Column
 
 
 class ColumnFilter(FilterSet):
-    database = ModelChoiceFilter(queryset=Database.objects.all(), method='database_filter', label='',
+    database = ModelChoiceFilter(queryset=Database.objects.filter(enable=True), method='database_filter', label='',
                                  empty_label='Choose a database')
     table = ModelChoiceFilter(queryset=Table.objects.all(), label='')
     word = CharFilter(method='word_filter', label='',
