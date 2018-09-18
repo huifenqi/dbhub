@@ -11,10 +11,10 @@ class Database(models.Model):
         (False, 'off'),
     )
     name = models.CharField(unique=True, max_length=100, help_text=u'数据库名')
-    config = models.CharField(unique=True, max_length=1000, help_text=u'配置')
+    config = models.URLField(unique=True, max_length=1000, help_text=u'配置')
     engine = models.CharField(max_length=10, help_text=u'引擎', default='InnoDB', null=True, blank=True)
     charset = models.CharField(max_length=100, help_text=u'编码', default='utf8', null=True, blank=True)
-    comment = models.CharField(max_length=5000, help_text=u'注释', default='TBD', null=True, blank=True)
+    comment = models.TextField(max_length=5000, help_text=u'注释', default='TBD', null=True, blank=True)
     enable = models.NullBooleanField(choices=NULL_TYPES, help_text=u'是否启用', default=False, null=True, blank=True)
 
     def __unicode__(self):
@@ -26,7 +26,7 @@ class Table(models.Model):
     name = models.CharField(max_length=100, help_text=u'表名')
     engine = models.CharField(max_length=10, help_text=u'引擎', null=True, blank=True)
     charset = models.CharField(max_length=100, help_text=u'编码', null=True, blank=True)
-    comment = models.CharField(max_length=5000, help_text=u'注释', null=True, blank=True)
+    comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -46,7 +46,7 @@ class Column(models.Model):
     data_type = models.CharField(max_length=100, help_text=u'数据类型', null=True, blank=True)
     is_null = models.NullBooleanField(choices=NULL_TYPES, help_text=u'可空', null=True, blank=True)
     default_value = models.CharField(max_length=1000, help_text=u'默认值', null=True, blank=True)
-    comment = models.CharField(max_length=5000, help_text=u'注释', null=True, blank=True)
+    comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
 
     def __unicode__(self):
         return self.name

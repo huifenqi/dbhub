@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.forms import Textarea
+from django.db import models
 
 from models import Database, Table, Column, Index
 
@@ -6,10 +8,12 @@ from models import Database, Table, Column, Index
 class DatabaseAdmin(admin.ModelAdmin):
     list_display = ('name', 'config', 'engine', 'charset', 'comment', 'enable')
     list_editable = ('config', 'enable')
+    readonly_fields = ('name', 'engine', 'charset')
 
 
 class TableAdmin(admin.ModelAdmin):
     list_display = ('name', 'database', 'engine', 'charset', 'comment')
+    readonly_fields = ('name', 'database', 'engine', 'charset')
 
 
 class ColumnAdmin(admin.ModelAdmin):
@@ -19,6 +23,13 @@ class ColumnAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'table_database', 'data_type', 'is_null', 'default_value', 'comment')
     search_fields = ('name', 'table__name', 'comment')
+    readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value')
+    list_filter = ('table',)
+    list_editable = ('comment',)
+
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 40})},
+    }
 
 
 class IndexAdmin(admin.ModelAdmin):
@@ -28,6 +39,7 @@ class IndexAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'table', 'database_name', 'type', 'include_columns')
     search_fields = ('name', 'table__name')
+    readonly_fields = ('name', 'table', 'database_name', 'type', 'include_columns')
 
 
 admin.site.register(Database, DatabaseAdmin)

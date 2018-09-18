@@ -20,7 +20,8 @@ def build(database):
         t, created = Table.objects.get_or_create(database=database, name=table.name)
         t.engine = table_info.get('engine', '')
         t.charset = table_info.get('default charset', '')
-        t.comment = table.comment
+        if not t.comment and table.comment:
+            t.comment = table.comment
         t.save()
         for column in table.columns:
             default_value = column.server_default.arg if column.server_default else None
@@ -31,7 +32,8 @@ def build(database):
                 c.data_type = repr(column.type)
             c.is_null = column.nullable
             c.default_value = default_value
-            c.comment = column.comment
+            if not c.comment and column.comment:
+                c.comment = column.comment
             c.save()
         for index in table.primary_key.columns:
             i, created = Index.objects.get_or_create(table=t, name=index.name)
