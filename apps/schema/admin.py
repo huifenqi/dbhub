@@ -14,6 +14,11 @@ class DatabaseAdmin(admin.ModelAdmin):
 class TableAdmin(admin.ModelAdmin):
     list_display = ('name', 'database', 'engine', 'charset', 'comment')
     readonly_fields = ('name', 'database', 'engine', 'charset')
+    list_editable = ('comment',)
+
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 40})},
+    }
 
 
 class ColumnAdmin(admin.ModelAdmin):
