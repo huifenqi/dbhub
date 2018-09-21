@@ -13,7 +13,9 @@ class DatabaseAdmin(admin.ModelAdmin):
 
 class TableAdmin(admin.ModelAdmin):
     list_display = ('name', 'database', 'engine', 'charset', 'comment')
+    search_fields = ('name', 'comment')
     readonly_fields = ('name', 'database', 'engine', 'charset')
+    list_filter = ('database',)
     list_editable = ('comment',)
 
     formfield_overrides = {

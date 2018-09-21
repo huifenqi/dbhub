@@ -7,7 +7,9 @@ from models import Column
 
 
 class ColumnTable(tables.Table):
-    table_comment = tables.Column(accessor='table.comment', verbose_name='Table Comment')
+    table_comment = tables.TemplateColumn('{{ value|linebreaks }}', verbose_name='Table Comment',
+                                          accessor='table.comment')
+    comment = tables.TemplateColumn('{{ value|linebreaks }}')
 
     class Meta:
         model = Column
