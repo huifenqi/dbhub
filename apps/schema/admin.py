@@ -8,7 +8,7 @@ from models import Database, Table, Column, Index
 class DatabaseAdmin(admin.ModelAdmin):
     list_display = ('name', 'config', 'engine', 'charset', 'comment', 'enable')
     list_editable = ('config', 'enable')
-    readonly_fields = ('name', 'engine', 'charset')
+    readonly_fields = ('engine', 'charset')
 
 
 class TableAdmin(admin.ModelAdmin):
