@@ -28,11 +28,12 @@ class ColumnAdmin(admin.ModelAdmin):
     def table_database(obj):
         return '{} ({})'.format(obj.table.name, obj.table.database.name)
 
-    list_display = ('name', 'table_database', 'data_type', 'is_null', 'default_value', 'comment')
+    list_display = ('name', 'table_database', 'data_type', 'is_null', 'default_value', 'comment', 'is_enum',
+                    'is_deleted')
     search_fields = ('name', 'table__name', 'comment')
     readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value')
     list_filter = ('table',)
-    list_editable = ('comment',)
+    list_editable = ('comment', 'is_enum', 'is_deleted')
 
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 40})},

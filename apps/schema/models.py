@@ -47,6 +47,9 @@ class Column(models.Model):
     is_null = models.NullBooleanField(choices=NULL_TYPES, help_text=u'可空', null=True, blank=True)
     default_value = models.CharField(max_length=1000, help_text=u'默认值', null=True, blank=True)
     comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
+    is_comment_dirty = models.BooleanField(default=False)
+    is_enum = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name

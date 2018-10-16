@@ -6,3 +6,4 @@ django-filter==1.1.0
 django-tables2==1.21.2
 MySQL-python==1.2.5
 uwsgi==2.0.17.1
+git+ssh://git@github.com/huifenqi/python-libs.git@0.0.9
