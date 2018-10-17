@@ -55,7 +55,7 @@ def run():
                     tb = getattr(db, table.name)
                 except Exception:
                     continue
-                real_enums = [getattr(row, column.name) for row in tb.group_by(column.name).all()]
+                real_enums = [str(getattr(row, column.name)) for row in tb.group_by(column.name).all()]
                 if set(real_enums) - set(comment_enums):
                     print database, table, column, comment_enums, real_enums
                     column.is_comment_dirty = True
