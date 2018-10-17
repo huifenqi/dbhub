@@ -20,7 +20,11 @@
                 <button class="ui green button" type="submit">Search</button>
             </div>
         </form>
-        <h3 id="login"><a href="/admin-login/">登录</a>&nbsp;/&nbsp;<a href="/oauth/login/">SSO 登录</a></h3>
+        {% if enable_oauth %}
+            <h3 id="login"><a href="/admin-login/">Login</a>&nbsp;/&nbsp;<a href="/oauth/login/">SSO Login</a></h3>
+        {% else %}
+            <h3 id="login"><a href="/admin/login/">Login</a></h3>
+        {% endif %}
         {% render_table table %}
         &nbsp;
     {% endblock %}
@@ -33,6 +37,7 @@
 
     #login {
         margin-top: 10px;
+        margin-right: 50px;
         float: right;
     }
 

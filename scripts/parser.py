@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
 
-from xlibs.db import DB
-
 
 class CommentParser(object):
     @classmethod
@@ -35,6 +33,7 @@ class CommentParser(object):
 
 
 def run():
+    from xlibs.db import DB
     from apps.schema.models import Database
     databases = Database.objects.filter(enable=True)
     for database in databases:
