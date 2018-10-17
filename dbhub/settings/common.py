@@ -41,11 +41,13 @@ INSTALLED_APPS = (
     'django_extensions',
     "django_tables2",
     "django_filters",
+    "oauthadmin",
     'apps.schema',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'oauthadmin.middleware.OauthAdminSessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -110,3 +112,17 @@ STATIC_ROOT = BASE_DIR + '/../static/'
 
 TITLE = '[DEMO] database dbhub schema'
 DB_INSTANCES = []
+
+# django-admin-oauth2
+SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
+
+OAUTHADMIN_CLIENT_ID = ''
+OAUTHADMIN_CLIENT_SECRET = ''
+OAUTHADMIN_BASE_URL = "https://sso.huifenqi.com/sso/oauth/"
+OAUTHADMIN_AUTH_URL = 'https://sso.huifenqi.com/sso/authorize/'
+OAUTHADMIN_TOKEN_URL = 'https://sso.huifenqi.com/sso/token/'
+OAUTHADMIN_GROUPS = ['editor']
+OAUTHADMIN_SCOPE = []
+
+# replace admin login with oauth login
+ENABLE_OAUTH = False
