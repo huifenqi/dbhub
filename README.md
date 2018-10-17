@@ -1,5 +1,7 @@
 # dbhub
 
+[![Build Status](https://travis-ci.org/huifenqi/dbhub.png?branch=master)](https://travis-ci.org/huifenqi/dbhub)
+
 ![demo](./screenshoot.png)
 
 This project has the following basic apps:
@@ -27,9 +29,13 @@ Install dependencies:
 * SQLite
 * Sybase
 
-## Init databases:
+## Sync databases' schema:
 
 `python manage.py runscript sync`
+
+## Check columns' enumeration:
+
+`python manage.py runscript parser`
 
 ## Run server:
 
