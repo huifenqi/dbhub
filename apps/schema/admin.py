@@ -29,9 +29,9 @@ class ColumnAdmin(admin.ModelAdmin):
         return '{} ({})'.format(obj.table.name, obj.table.database.name)
 
     list_display = ('name', 'table_database', 'data_type', 'is_null', 'default_value', 'comment', 'is_enum',
-                    'is_deleted')
+                    'is_comment_dirty', 'is_deleted')
     search_fields = ('name', 'table__name', 'comment')
-    readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value')
+    readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value', 'is_comment_dirty')
     list_filter = ('table',)
     list_editable = ('comment', 'is_enum', 'is_deleted')
 

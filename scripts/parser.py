@@ -2,13 +2,12 @@
 import re
 
 from xlibs.db import DB
-from apps.schema.models import Database
 
 
 class CommentParser(object):
     @classmethod
     def parse(cls, comment):
-        pattern = r"(\d+)[:|：|,|，|-]\s*([^\x00-\xff]+)"
+        pattern = r"([\d\w]+)([:|：|,|，|-]{1})\s*[^:：,，-]?"
         objs = re.findall(pattern, comment, re.M | re.I)
         return objs
 
@@ -51,22 +50,39 @@ def test():
     t = u'是否在线，0-离线 1-在线'
     objs = cp.get_enums(t)
     print objs
+    t = u"""1:xxx
+        2:zzz"""
+    objs = cp.get_enums(t)
+    print objs
+    t = u"""银行账户开户行 PABC:平安银行 SPDB:浦发银行 HXB:华夏银行...参考程序枚举"""
+    objs = cp.get_enums(t)
+    print objs
 
 
 def run():
+    from apps.schema.models import Database
     cp = CommentParser()
     databases = Database.objects.filter(enable=True)
     for database in databases:
         db = DB(database.config)
         for table in database.table_set.all():
-            for column in table.column_set.filter(is_enum=True):
-                comment_enums = cp.get_enums(column.comment)
+            for column in table.column_set.all():
+                # skip column which is dirty
+                if column.is_comment_dirty:
+                    continue
+                comment_enums = cp.get_enums(column.comment or '')
+                # set is_enum as have comment_enums
+                if comment_enums and not column.is_enum:
+                    column.is_enum = True
+                # skip column which is not enum
+                if not column.is_enum:
+                    continue
                 tb = getattr(db, table.name)
                 real_enums = [getattr(row, column.name) for row in tb.group_by(column.name).all()]
                 if set(real_enums) - set(comment_enums):
                     print database, table, column, 'comment dirty'
                     column.is_comment_dirty = True
-                    column.save()
+                column.save()
 
 
 if __name__ == '__main__':
