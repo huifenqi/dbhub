@@ -14,10 +14,24 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from apps.schema.views import ColumnListView
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
     url(r"^$", ColumnListView.as_view(), name="index"),
+]
+
+if settings.ENABLE_OAUTH:
+    old_admin_login = admin.site.login
+    admin.site.login = login_required(admin.site.login)
+    urlpatterns += [
+        url(r'^admin-login/', old_admin_login),
+        url(r'^oauth/', include('oauthadmin.urls')),
+    ]
+    settings.LOGIN_URL = '/oauth/login/'
+    settings.LOGOUT_REDIRECT_URL = '/oauth/logout_redirect/'
+
+urlpatterns += [
+    url(r'^admin/', include(admin.site.urls)),
 ]
