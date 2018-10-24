@@ -19,15 +19,16 @@ Install dependencies:
 
 `pip install -r requirements.txt`
 
-## Support dialects
+## Run server:
 
-* Firebird
-* Microsoft SQL Server
-* MySQL
-* Oracle
-* PostgreSQL
-* SQLite
-* Sybase
+`python manage.py runserver --settings=dbhub.settings.dev`
+
+## Login and add databases
+
+* name: database name
+* config: whole url for connect with database
+* for MySQL: mysql://{username}:{password}@{database-url}:3306/{database-name}?charset=utf8
+* for SQLite: sqlite:////{absolute-path-to-db-file}
 
 ## Sync databases' schema:
 
@@ -37,6 +38,12 @@ Install dependencies:
 
 `python manage.py runscript parser`
 
-## Run server:
+## Support dialects
 
-`python manage.py runserver --settings=dbhub.settings.dev`
+* Firebird
+* Microsoft SQL Server
+* MySQL
+* Oracle
+* PostgreSQL
+* SQLite
+* Sybase
