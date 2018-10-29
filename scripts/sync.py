@@ -54,7 +54,7 @@ def init_databases():
         db_list = insp.get_schema_names()
         dbs = set(db_list) - {'information_schema', 'performance_schema', 'mysql', 'sys'}
         for db in dbs:
-            config = '{}{}?charset=utf8'.format(instance, db)
+            config = '{}/{}?charset=utf8'.format(instance.rstrip('/'), db)
             d, created = Database.objects.get_or_create(name=db)
             d.config = config
             d.save()
