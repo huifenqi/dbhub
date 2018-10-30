@@ -17,10 +17,11 @@ class ColumnTable(tables.Table):
                                           accessor='table.comment')
     comment = tables.TemplateColumn('{{ value|linebreaks }}')
     warning_info = tables.TemplateColumn(TEMPLATE, verbose_name='Warning', orderable=False)
+    database = tables.TemplateColumn('{{value}}', accessor='table.database')
 
     class Meta:
         model = Column
-        sequence = ('name', 'table', 'data_type', 'is_null', 'default_value', 'comment', 'table_comment',
+        sequence = ('name', 'table', 'database', 'data_type', 'is_null', 'default_value', 'comment', 'table_comment',
                     'warning_info')
         template_name = "django_tables2/semantic.html"
         exclude = ("id", "is_comment_dirty", "is_enum", "is_deleted")
