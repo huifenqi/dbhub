@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'django_extensions',
     "django_tables2",
     "django_filters",
+    "dal",
+    "dal_select2",
     "oauthadmin",
     'apps.schema',
 )
