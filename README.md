@@ -39,7 +39,7 @@ Install dependencies:
 ## How to write comments with enumeration
 
 1. write description first;
-2. write enumerations after.
+2. write enumerations below with {enum}: {description}.
 
 ```
 charset with description, blah, blah, blah

@@ -5,7 +5,7 @@ import re
 class CommentParser(object):
     @classmethod
     def parse(cls, comment):
-        pattern = r"([-\d\w]+)([:|：|,|，|-]{1})\s*[^:：,，-]?"
+        pattern = r"([-\d\w]+)([:|：|-]{1})\s*[^:：,，-]?"
         objs = re.findall(pattern, comment, re.M | re.I)
         return objs
 
