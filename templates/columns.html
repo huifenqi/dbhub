@@ -62,17 +62,43 @@
             margin-right: auto !important;
         }
     }
+
+    .select2-selection.select2-selection--single {
+        height: 38px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 38px;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border: 1px solid rgba(34,36,38,0.15);
+    }
 </style>
 <script>
     $(document).ready(function () {
         $('#id_table').select2({
             placeholder: "Select a table",
-            allowClear: true
+            allowClear: true,
+            ajax: {
+                url: '/autocomplete/',
+                dataType: 'json',
+                data: function (params) {
+                    database = $("#id_database").val();
+                    return {
+                        q: params.term, // search term
+                        database: database,
+                        page: params.page
+                    };
+                },
+            }
         });
     });
     $('#id_database').addClass('ui dropdown');
     $('#id_database').css({'width': '200px'});
-    $('#id_word').parent('p').css({'vertical-align': 'top', 'margin-top': '2px'});
+    $('#id_word').parent('p').css({'vertical-align': 'top'});
+    $('#id_word').css({'height': '38px', 'width': '300px'});
     $('.ui.form .inline.field>:first-child').css({'margin': '0 1px 0 0'});
+    $('.ui.form .inline.field>:nth-child(2)').css({'position': 'relative', 'top': '-1px'});
 </script>
 </html>
