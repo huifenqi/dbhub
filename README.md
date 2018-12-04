@@ -19,26 +19,38 @@ Install dependencies:
 
 `pip install -r requirements.txt`
 
-## Run server:
+## Run server
 
 `python manage.py runserver --settings=dbhub.settings.dev`
 
-## Login and add databases
+## Add database
 
 * name: database name
 * config: whole url for connect with database
 * for MySQL: mysql://{username}:{password}@{database-url}:3306/{database-name}?charset=utf8
 * for SQLite: sqlite:////{absolute-path-to-db-file}
 
-## Sync databases' schema:
+## Sync databases' schema and check columns' enumeration
 
 `python manage.py runscript sync`
 
-## Check columns' enumeration:
+`python manage.py runscript check`
 
-`python manage.py runscript parser`
+## How to write comments with enumeration
 
-## Support dialects
+1. write description first;
+2. write enumerations after.
+
+```
+charset with description, blah, blah, blah
+
+utf8: A UTF-8 encoding of the Unicode character set using one to three bytes per character. default utf8 of mysql, max length is 3 bytes, not support characters, such as emoji.
+
+utf8mb4: A UTF-8 encoding of the Unicode character set using one to four bytes per character.
+
+```
+
+## Supported dialects
 
 * Firebird
 * Microsoft SQL Server
