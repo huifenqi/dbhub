@@ -1,17 +1,18 @@
 from django.contrib import admin
 from django.forms import Textarea
 from django.db import models
+from reversion.admin import VersionAdmin
 
 from models import Database, Table, Column, Index
 
 
-class DatabaseAdmin(admin.ModelAdmin):
+class DatabaseAdmin(VersionAdmin):
     list_display = ('name', 'config', 'engine', 'charset', 'comment', 'enable')
     list_editable = ('config', 'enable')
     readonly_fields = ('engine', 'charset')
 
 
-class TableAdmin(admin.ModelAdmin):
+class TableAdmin(VersionAdmin):
     list_display = ('name', 'database', 'engine', 'charset', 'comment')
     search_fields = ('name', 'comment')
     readonly_fields = ('name', 'database', 'engine', 'charset')
@@ -23,7 +24,7 @@ class TableAdmin(admin.ModelAdmin):
     }
 
 
-class ColumnAdmin(admin.ModelAdmin):
+class ColumnAdmin(VersionAdmin):
     @staticmethod
     def table_database(obj):
         return '{} ({})'.format(obj.table.name, obj.table.database.name)
@@ -40,7 +41,7 @@ class ColumnAdmin(admin.ModelAdmin):
     }
 
 
-class IndexAdmin(admin.ModelAdmin):
+class IndexAdmin(VersionAdmin):
     @staticmethod
     def database_name(obj):
         return obj.table.database.name
