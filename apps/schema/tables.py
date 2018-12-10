@@ -21,7 +21,7 @@ class ColumnTable(tables.Table):
 
     class Meta:
         model = Column
-        sequence = ('name', 'table', 'database', 'data_type', 'is_null', 'default_value', 'comment', 'table_comment',
+        sequence = ('name', 'table', 'data_type', 'is_null', 'default_value', 'comment', 'table_comment',
                     'warning_info')
         template_name = "django_tables2/semantic.html"
         exclude = ("id", "is_comment_dirty", "is_enum", "is_deleted")

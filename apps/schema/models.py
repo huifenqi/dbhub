@@ -29,7 +29,7 @@ class Table(models.Model):
     comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
 
     def __unicode__(self):
-        return self.name
+        return '{} ({})'.format(self.name, self.database.name)
 
     class Meta:
         unique_together = (('database', 'name'),)

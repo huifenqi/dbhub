@@ -25,11 +25,7 @@ class TableAdmin(VersionAdmin):
 
 
 class ColumnAdmin(VersionAdmin):
-    @staticmethod
-    def table_database(obj):
-        return '{} ({})'.format(obj.table.name, obj.table.database.name)
-
-    list_display = ('name', 'table_database', 'data_type', 'is_null', 'default_value', 'comment', 'is_enum',
+    list_display = ('name', 'table', 'data_type', 'is_null', 'default_value', 'comment', 'is_enum',
                     'is_comment_dirty', 'is_deleted')
     search_fields = ('name', 'table__name', 'comment')
     readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value')
@@ -42,13 +38,9 @@ class ColumnAdmin(VersionAdmin):
 
 
 class IndexAdmin(VersionAdmin):
-    @staticmethod
-    def database_name(obj):
-        return obj.table.database.name
-
-    list_display = ('name', 'table', 'database_name', 'type', 'include_columns')
+    list_display = ('name', 'table', 'type', 'include_columns')
     search_fields = ('name', 'table__name')
-    readonly_fields = ('name', 'table', 'database_name', 'type', 'include_columns')
+    readonly_fields = ('name', 'table', 'type', 'include_columns')
 
 
 admin.site.register(Database, DatabaseAdmin)
