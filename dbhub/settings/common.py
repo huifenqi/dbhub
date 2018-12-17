@@ -124,7 +124,7 @@ OAUTHADMIN_CLIENT_SECRET = ''
 OAUTHADMIN_BASE_URL = "https://sso.huifenqi.com/sso/oauth/"
 OAUTHADMIN_AUTH_URL = 'https://sso.huifenqi.com/sso/authorize/'
 OAUTHADMIN_TOKEN_URL = 'https://sso.huifenqi.com/sso/token/'
-OAUTHADMIN_GROUPS = ['editor']
+OAUTHADMIN_GROUPS = []
 OAUTHADMIN_SCOPE = []
 
 # replace admin login with oauth login

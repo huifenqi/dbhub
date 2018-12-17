@@ -27,6 +27,7 @@ class Table(models.Model):
     engine = models.CharField(max_length=10, help_text=u'引擎', null=True, blank=True)
     charset = models.CharField(max_length=100, help_text=u'编码', null=True, blank=True)
     comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
+    is_deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return '{} ({})'.format(self.name, self.database.name)

@@ -13,7 +13,7 @@ class DatabaseAdmin(VersionAdmin):
 
 
 class TableAdmin(VersionAdmin):
-    list_display = ('name', 'database', 'engine', 'charset', 'comment')
+    list_display = ('name', 'database', 'engine', 'charset', 'comment', 'is_deleted')
     search_fields = ('name', 'comment')
     readonly_fields = ('name', 'database', 'engine', 'charset')
     list_filter = ('database',)
