@@ -15,7 +15,7 @@
 <body>
 <div class="ui container">
     {% block body %}
-        <h1 id="title"><a href="#">{{ title }}</a></h1>
+        <h1 id="title"><a href="/">{{ title }}</a></h1>
         <form action="" method="get" class="ui form dropdown">
             <div class="inline field">
                 {{ filter.form.as_p }}
@@ -28,8 +28,10 @@
             <h3 id="login"><a href="/admin/login/">Login</a></h3>
         {% endif %}
         {% render_table table %}
-        &nbsp;
     {% endblock %}
+    <di class="footer">
+        <span><a href="https://github.com/huifenqi/dbhub">DBHUB</a> is built with <3 using Django & maintained by <a href="https://github.com/huifenqi">huifenqi</a>.</span>
+    </di>
 </div>
 </body>
 <style>
