@@ -14,7 +14,7 @@ def build(database):
         database.charset = engine.dialect.encoding
         database.save()
     for table in m.sorted_tables:
-        print 'table: {}'.format(table.name)
+
         dialect = database.config.split(':')[0]
         table_info = table.dialect_options[dialect]._non_defaults
         t, created = Table.objects.get_or_create(database=database, name=table.name)
@@ -64,7 +64,11 @@ def run():
     init_databases()
     databases = Database.objects.filter(enable=True)
     for database in databases:
-        build(database)
+        try:
+            build(database)
+        except Exception, e:
+            print('ERROR: {}'.format(database.name))
+            print(e)
 
 
 if __name__ == '__main__':
