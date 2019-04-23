@@ -50,6 +50,7 @@ class Column(models.Model):
     comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
     is_comment_dirty = models.BooleanField(default=False)
     is_enum = models.BooleanField(default=False)
+    other_enums = models.CharField(max_length=100, help_text=u'未匹配的枚举值', default='', null=True, blank=True)
     is_deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
