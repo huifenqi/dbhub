@@ -7,7 +7,11 @@ from models import Column
 
 TEMPLATE = """
 {% if record.is_deleted %}<span class="ui red label">Deleted</span>{% endif %}
-{% if record.is_comment_dirty %}<span class="ui yellow label">Not Match: {{record.other_enums}}</span>{% endif %}
+{% if record.is_comment_dirty %}
+{% if record.other_enums|length  > 20 %}
+     <span class="ui yellow label">Not Match:<br>{{record.other_enums|slice:":2"}}...</span>
+     {% else %}
+  <span class="ui yellow label">Not Match:<br>{{record.other_enums}}</span>{% endif %}{% endif %}
 """
 
 
