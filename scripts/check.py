@@ -54,7 +54,7 @@ def run(db_list, t_list):
                 # skip column which is dirty
                 if column.is_comment_dirty or column.is_deleted:
                     continue
-                comment_enums = CommentParser.get_enums(column.comment or '')
+                comment_enums = CommentParser.get_enums(column.comment.encode('utf-8') or '')
                 # set is_enum as have comment_enums
                 if comment_enums and not column.is_enum:
                     column.is_enum = True
@@ -67,7 +67,7 @@ def run(db_list, t_list):
                     continue
                 enum_list = tb.group_by(column.name).all()
                 if len(enum_list) > 50:
-                    column.other_enums = '枚举值可能异常'
+                    column.other_enums = u'枚举值可能异常'
                     column.save()
                     continue
                 real_enums = [str(getattr(row, column.name)) for row in enum_list]
