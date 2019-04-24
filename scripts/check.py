@@ -40,8 +40,8 @@ def run(db_list, t_list):
         databases = Database.objects.filter(enable=True)
     else:
         databases = Database.objects.filter(enable=True, name__in=db_name_list)
+    t_name_list = t_list.split(',')
     for database in databases:
-        t_name_list = t_list.split(',')
         if len(t_name_list) == 1 and t_name_list[0] == '':
             tables = database.table_set.all()
         else:
@@ -67,7 +67,7 @@ def run(db_list, t_list):
                     continue
                 enum_list = tb.group_by(column.name).all()
                 if len(enum_list) > 50:
-                    print '枚举值可能异常', database, table, column
+                    column.other_enums = '枚举值可能异常'
                     continue
                 real_enums = [str(getattr(row, column.name)) for row in enum_list]
                 no_match_enums = (set(real_enums) - set(comment_enums))
