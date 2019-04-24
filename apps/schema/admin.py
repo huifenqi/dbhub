@@ -25,11 +25,11 @@ class TableAdmin(VersionAdmin):
 
 
 class ColumnAdmin(VersionAdmin):
-    list_display = ('name', 'table', 'data_type', 'is_null', 'default_value', 'comment', 'is_enum',
+    list_display = ('name', 'table', 'data_type', 'is_null', 'default_value', 'comment', 'other_enums', 'is_enum',
                     'is_comment_dirty', 'is_deleted')
     search_fields = ('name', 'table__name', 'comment')
-    readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value')
-    list_filter = ('table', 'is_comment_dirty')
+    readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value', 'other_enums')
+    list_filter = ('is_comment_dirty', 'table')
     list_editable = ('comment', 'is_enum', 'is_deleted', 'is_comment_dirty')
 
     formfield_overrides = {
