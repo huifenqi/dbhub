@@ -29,8 +29,8 @@ class ColumnAdmin(VersionAdmin):
                     'is_comment_dirty', 'is_deleted')
     search_fields = ('name', 'table__name', 'comment')
     readonly_fields = ('name', 'table', 'data_type', 'is_null', 'default_value')
-    list_filter = ('table',)
-    list_editable = ('comment', 'is_enum', 'is_deleted')
+    list_filter = ('table', 'is_comment_dirty')
+    list_editable = ('comment', 'is_enum', 'is_deleted', 'is_comment_dirty')
 
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 40})},

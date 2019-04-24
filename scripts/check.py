@@ -32,16 +32,27 @@ class CommentParser(object):
         return sorted(enums)
 
 
-def run():
+def run(db_list, t_list):
     from xlibs.db import DB
     from apps.schema.models import Database
-    databases = Database.objects.filter(enable=True)
+    db_name_list = db_list.split(',')
+    if len(db_name_list) == 1 and db_name_list[0] == '':
+        databases = Database.objects.filter(enable=True)
+    else:
+        databases = Database.objects.filter(enable=True, name__in=db_name_list)
+    t_name_list = t_list.split(',')
     for database in databases:
+        if len(t_name_list) == 1 and t_name_list[0] == '':
+            tables = database.table_set.all()
+        else:
+            tables = database.table_set.filter(name__in=t_name_list)
+            if not tables:
+                tables = database.table_set.all()
         db = DB(database.config)
-        for table in database.table_set.all():
+        for table in tables:
             for column in table.column_set.all():
                 # skip column which is dirty
-                if column.is_comment_dirty:
+                if column.is_comment_dirty or column.is_deleted:
                     continue
                 comment_enums = CommentParser.get_enums(column.comment or '')
                 # set is_enum as have comment_enums
@@ -54,8 +65,17 @@ def run():
                     tb = getattr(db, table.name)
                 except Exception:
                     continue
-                real_enums = [str(getattr(row, column.name)) for row in tb.group_by(column.name).all()]
-                if set(real_enums) - set(comment_enums):
+                enum_list = tb.group_by(column.name).all()
+                if len(enum_list) > 50:
+                    column.other_enums = '枚举值可能异常'
+                    column.save()
+                    continue
+                real_enums = [str(getattr(row, column.name)) for row in enum_list]
+                no_match_enums = (set(real_enums) - set(comment_enums))
+                if no_match_enums:
                     print database, table, column, comment_enums, real_enums
                     column.is_comment_dirty = True
+                    warning = ','.join(no_match_enums)
+                    column.other_enums = warning
                 column.save()
+
