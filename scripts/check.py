@@ -77,5 +77,7 @@ def run(db_list, t_list):
                     column.is_comment_dirty = True
                     warning = ','.join(no_match_enums)
                     column.other_enums = warning
+                else:
+                    column.is_comment_dirty = False
                 column.save()
 
