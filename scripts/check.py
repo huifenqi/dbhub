@@ -70,7 +70,7 @@ def run(db_list, t_list):
                     column.other_enums = u'枚举值可能异常'
                     column.save()
                     continue
-                real_enums = [str(getattr(row, column.name)) for row in enum_list]
+                real_enums = [str(getattr(row, column.name).encode('utf-8')) for row in enum_list]
                 no_match_enums = (set(real_enums) - set(comment_enums))
                 if no_match_enums:
                     print database, table, column, comment_enums, real_enums
