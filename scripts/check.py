@@ -54,7 +54,7 @@ def run(db_list, t_list):
                 # skip column which is dirty
                 if column.is_comment_dirty or column.is_deleted:
                     continue
-                comment_enums = CommentParser.get_enums(column.comment.encode('utf-8') or '')
+                comment_enums = CommentParser.get_enums((column.comment or '').encode('utf-8'))
                 # set is_enum as have comment_enums
                 if comment_enums and not column.is_enum:
                     column.is_enum = True
