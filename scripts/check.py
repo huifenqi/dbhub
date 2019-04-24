@@ -68,6 +68,7 @@ def run(db_list, t_list):
                 enum_list = tb.group_by(column.name).all()
                 if len(enum_list) > 50:
                     column.other_enums = '枚举值可能异常'
+                    column.save()
                     continue
                 real_enums = [str(getattr(row, column.name)) for row in enum_list]
                 no_match_enums = (set(real_enums) - set(comment_enums))
