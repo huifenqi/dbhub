@@ -34,7 +34,7 @@ Install dependencies:
 
 `python manage.py runscript sync`
 
-`python manage.py runscript check`
+`python manage.py runscript check --script--args [db_name] [table_name] `
 
 ## How to write comments with enumeration
 
