@@ -65,12 +65,14 @@ def run(db_list, t_list):
                     tb = getattr(db, table.name)
                 except Exception:
                     continue
-                enum_list = tb.group_by(column.name).all()
-                if len(enum_list) > 50:
+                enum_count = tb.group_by(column.name).count()
+                if enum_count > 50:
                     column.other_enums = u'枚举值可能异常'
+                    column.is_comment_dirty = True
                     column.save()
                     continue
                 real_enums = []
+                enum_list = tb.group_by(column.name).all()
                 for row in enum_list:
                     tmp = getattr(row, column.name)
                     if isinstance(tmp, unicode):
