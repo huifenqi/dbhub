@@ -1,19 +1,25 @@
-# dbhub
+# DBHub
+
+DBHub is a free database schema automatic discovery and easily commenting tool. 
+DBHub now can support mysql and other 7 databases, it is easy to extend.
+DBHub has a web page for viewing all schema with comments and has an admin system for managing.
 
 [![Build Status](https://travis-ci.org/huifenqi/dbhub.png?branch=master)](https://travis-ci.org/huifenqi/dbhub)
 
 ![demo](./screenshoot.png)
 
-This project has the following basic apps:
+## Structure:
 
-* schema (manage table schema like wiki but automatically)
+* apps (web and admin page)
+* scripts (sync and check)
+* configs (supervisor, newrelic and uwsgi)
 
 ## Installation
 
 To set up a development environment quickly, install Python 2.x first. It
 comes with virtualenv built-in. so create a virtual environment with:
 
-`mkvirtualenv dbhub`
+`virtualenv -p python2 env`
 
 Install dependencies:
 

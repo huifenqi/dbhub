@@ -7,6 +7,5 @@ django-tables2==1.21.2
 MySQL-python==1.2.5
 uwsgi==2.0.17.1
 git+ssh://git@github.com/bastionhost/django-admin-oauth2.git
-git+ssh://git@git.hzfapi.com/huifenqi/python-libs.git@0.0.5
-
 django-reversion==3.0.2
+lark-parser
