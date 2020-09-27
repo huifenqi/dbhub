@@ -8,4 +8,6 @@ MySQL-python==1.2.5
 uwsgi==2.0.17.1
 git+ssh://git@github.com/bastionhost/django-admin-oauth2.git
 django-reversion==3.0.2
+pymongo
+https://github.com/pajachiet/pymongo-schema/archive/master.zip
 lark-parser
