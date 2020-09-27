@@ -1,5 +1,6 @@
 *.pyc
+*.ini
 db.sqlite3
 !static/.gitkeep
 static/
-*.ini
+prod.py

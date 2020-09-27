@@ -18,6 +18,8 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from apps.schema.views import ColumnListView, TableAutocomplete
 
+admin.site.site_header = 'DBHub'
+
 urlpatterns = [
     url(r"^$", ColumnListView.as_view(), name="index"),
     url(r'^autocomplete/$', TableAutocomplete.as_view(), name='table-autocomplete'),

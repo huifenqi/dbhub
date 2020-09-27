@@ -1,6 +1,6 @@
 Django==1.11.29
 django-extensions==2.1.0
-SQLAlchemy==1.2.10
+SQLAlchemy>=1.3.0
 django-autocomplete-light==3.2.10
 django-filter==1.1.0
 django-tables2==1.21.2

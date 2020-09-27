@@ -9,12 +9,11 @@ def build(database):
     engine = create_engine(database.config)
     m = MetaData()
     m.reflect(engine)
-    # fill database info
     if not database.charset:
+        # fill database info
         database.charset = engine.dialect.encoding
         database.save()
     for table in m.sorted_tables:
-
         dialect = database.config.split(':')[0]
         table_info = table.dialect_options[dialect]._non_defaults
         t, created = Table.objects.get_or_create(database=database, name=table.name)

@@ -79,14 +79,12 @@ def run(db_list, t_list):
                         real_enums.append(tmp.encode('utf-8'))
                     else:
                         real_enums.append(str(tmp))
-                # real_enums = [str(getattr(row, column.name).encode('utf-8')) for row in enum_list]
                 no_match_enums = (set(real_enums) - set(comment_enums))
                 if no_match_enums:
-                    print database, table, column, comment_enums, real_enums
+                    print(database, table, column, comment_enums, real_enums)
                     column.is_comment_dirty = True
                     warning = ','.join(no_match_enums)
                     column.other_enums = warning
                 else:
                     column.is_comment_dirty = False
                 column.save()
-
