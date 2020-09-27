@@ -31,7 +31,11 @@
                 <h3 id="login"><a href="/admin/login/">Login</a></h3>
             {% endif %}
         {% endif %}
-        {% render_table table %}
+        {% if user.is_authenticated %}
+            {% render_table table %}
+        {% else %}
+            <h1 style="text-align:center;">Please login to view!</h1>
+        {% endif %}
     {% endblock %}
     <di class="footer">
         <span><a href="https://github.com/huifenqi/dbhub">DBHUB</a> is built with <3 using Django & maintained by <a href="https://github.com/huifenqi">huifenqi</a>.</span>
