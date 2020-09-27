@@ -84,6 +84,9 @@ class MongoDBSync(object):
                         continue
                     c, created = Column.objects.get_or_create(table=t, name=column)
                     c.data_type = mapping[self.db][collection][column]['type']
+                    c.is_null = None
+                    c.default_value = None
+                    c.comment = ''
                     c.save()
 
 
