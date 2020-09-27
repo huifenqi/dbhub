@@ -23,7 +23,7 @@
             </div>
         </form>
         {% if user.is_authenticated %}
-            <h3 id="login">Welcome '{{ user.username }}'</h3>
+            <h3 id="login">Welcome, {{ user.username }}</h3>
         {% else %}
             {% if enable_oauth %}
                 <h3 id="login"><a href="/oauth/login/">Login</a></h3>

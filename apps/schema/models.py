@@ -46,7 +46,7 @@ class Column(models.Model):
     name = models.CharField(max_length=100, help_text=u'列名')
     data_type = models.CharField(max_length=100, help_text=u'数据类型', null=True, blank=True)
     is_null = models.NullBooleanField(choices=NULL_TYPES, help_text=u'可空', null=True, blank=True)
-    default_value = models.CharField(max_length=1000, help_text=u'默认值', null=True, blank=True)
+    default_value = models.CharField(max_length=100, help_text=u'默认值', null=True, blank=True)
     comment = models.TextField(max_length=5000, help_text=u'注释', null=True, blank=True)
     is_comment_dirty = models.BooleanField(default=False)
     is_enum = models.BooleanField(default=False)
@@ -70,7 +70,7 @@ class Index(models.Model):
     table = models.ForeignKey(Table)
     name = models.CharField(max_length=100, help_text=u'索引名')
     type = models.CharField(max_length=100, choices=KEY_TYPES, help_text=u'类型', null=True, blank=True)
-    include_columns = models.CharField(max_length=1000, help_text=u'包含字段', null=True, blank=True)
+    include_columns = models.CharField(max_length=100, help_text=u'包含字段', null=True, blank=True)
 
     def __unicode__(self):
         return self.name

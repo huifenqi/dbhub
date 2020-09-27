@@ -1,7 +1,7 @@
 # DBHub
 
 DBHub is a free database schema automatic discovery and easily commenting tool. 
-DBHub now can support mysql and other 7 databases, it is easy to extend.
+DBHub now can support mysql, mongodb and other 6 databases, it is easy to extend.
 DBHub has a web page for viewing all schema with comments and has an admin system for managing.
 
 [![Build Status](https://travis-ci.org/huifenqi/dbhub.png?branch=master)](https://travis-ci.org/huifenqi/dbhub)
@@ -35,6 +35,7 @@ Install dependencies:
 * config: whole url for connect with database
 * for MySQL: mysql://{username}:{password}@{database-url}:3306/{database-name}?charset=utf8
 * for SQLite: sqlite:////{absolute-path-to-db-file}
+* for MongoDB: mongodb://{username}:{password}@{database-url}:27017/{database-name}
 
 ## Sync databases' schema and check columns' enumeration
 
