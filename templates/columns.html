@@ -22,10 +22,14 @@
                 <button class="ui green button" type="submit">Search</button>
             </div>
         </form>
-        {% if enable_oauth %}
-            <h3 id="login"><a href="/oauth/login/">Login</a></h3>
+        {% if user.is_authenticated %}
+            <h3 id="login">Welcome '{{ user.username }}'</h3>
         {% else %}
-            <h3 id="login"><a href="/admin/login/">Login</a></h3>
+            {% if enable_oauth %}
+                <h3 id="login"><a href="/oauth/login/">Login</a></h3>
+            {% else %}
+                <h3 id="login"><a href="/admin/login/">Login</a></h3>
+            {% endif %}
         {% endif %}
         {% render_table table %}
     {% endblock %}

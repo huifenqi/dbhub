@@ -22,7 +22,7 @@ admin.site.site_header = 'DBHub'
 
 urlpatterns = [
     url(r"^$", ColumnListView.as_view(), name="index"),
-    url(r'^autocomplete/$', TableAutocomplete.as_view(), name='table-autocomplete'),
+    url(r'^autocomplete/$', login_required(TableAutocomplete.as_view()), name='table-autocomplete'),
 ]
 
 if settings.ENABLE_OAUTH:
