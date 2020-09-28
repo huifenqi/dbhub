@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
+from lark import Lark
+
+from xlibs.db import DB
+from apps.schema.models import Database
 
 
 class CommentParser(object):
@@ -11,7 +15,6 @@ class CommentParser(object):
 
     @classmethod
     def parse_with_lark(cls, comment):
-        from lark import Lark
         parser = Lark('''start: WORD "," WORD "!"
                     LCASE_LETTER: "a".."z"
                     UCASE_LETTER: "A".."Z"
@@ -33,8 +36,6 @@ class CommentParser(object):
 
 
 def run(db_list, t_list):
-    from xlibs.db import DB
-    from apps.schema.models import Database
     db_name_list = db_list.split(',')
     if len(db_name_list) == 1 and db_name_list[0] == '':
         databases = Database.objects.filter(enable=True)
@@ -42,6 +43,8 @@ def run(db_list, t_list):
         databases = Database.objects.filter(enable=True, name__in=db_name_list)
     t_name_list = t_list.split(',')
     for database in databases:
+        if database.config.startswith('mongodb'):
+            continue
         if len(t_name_list) == 1 and t_name_list[0] == '':
             tables = database.table_set.all()
         else:
@@ -67,7 +70,7 @@ def run(db_list, t_list):
                     continue
                 enum_count = tb.group_by(column.name).count()
                 if enum_count > 50:
-                    column.other_enums = u'枚举值可能异常'
+                    column.other_enums = u'枚举值异常!'
                     column.is_comment_dirty = True
                     column.save()
                     continue

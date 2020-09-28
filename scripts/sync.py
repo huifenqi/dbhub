@@ -79,6 +79,8 @@ class MongoDBSync(object):
                 schema = extract_pymongo_client_schema(client, [self.db], [collection])
                 mapping = mongo_schema_to_mapping(schema)
                 t, created = Table.objects.get_or_create(database=self.database, name=collection)
+                if collection not in mapping[self.db]:
+                    continue
                 for column in mapping[self.db][collection].keys():
                     if column == 'pk':
                         continue
@@ -104,14 +106,10 @@ def run():
     init_databases()
     databases = Database.objects.filter(enable=True)
     for database in databases:
-        try:
-            if database.config.startswith('mongodb'):
-                MongoDBSync(database).build()
-            else:
-                RelationalDBSync().build(database)
-        except Exception, e:
-            print('ERROR: {}'.format(database.name))
-            print(e)
+        if database.config.startswith('mongodb'):
+            MongoDBSync(database).build()
+        else:
+            RelationalDBSync().build(database)
 
 
 if __name__ == '__main__':
