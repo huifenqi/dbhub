@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
-from lark import Lark
 
-from xlibs.db import DB
 from apps.schema.models import Database
+from scripts.db import DB
 
 
 class CommentParser(object):
@@ -15,6 +14,7 @@ class CommentParser(object):
 
     @classmethod
     def parse_with_lark(cls, comment):
+        from lark import Lark
         parser = Lark('''start: WORD "," WORD "!"
                     LCASE_LETTER: "a".."z"
                     UCASE_LETTER: "A".."Z"

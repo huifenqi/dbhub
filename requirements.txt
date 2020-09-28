@@ -11,3 +11,4 @@ django-reversion==3.0.2
 pymongo
 https://github.com/pajachiet/pymongo-schema/archive/master.zip
 lark-parser
+sqlsoup>=0.9.1
