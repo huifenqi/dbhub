@@ -1,6 +1,6 @@
 *.pyc
-*.ini
-db.sqlite3
 !static/.gitkeep
 static/
+env/
+db.sqlite3
 prod.py

@@ -31,7 +31,7 @@ class RelationalDBSync(object):
             default_value = column.server_default.arg if column.server_default else None
             c, created = Column.objects.get_or_create(table=t, name=column.name)
             try:
-                c.data_type = str(column.type)
+                c.data_type = str(column.type).split(' ')[0]
             except Exception:
                 c.data_type = repr(column.type)
             c.is_null = column.nullable

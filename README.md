@@ -59,10 +59,11 @@ utf8mb4: A UTF-8 encoding of the Unicode character set using one to four bytes p
 
 ## Supported dialects
 
-* Firebird
-* Microsoft SQL Server
 * MySQL
-* Oracle
+* MongoDB
 * PostgreSQL
+* Oracle
 * SQLite
+* Microsoft SQL Server
+* Firebird
 * Sybase
