@@ -79,13 +79,14 @@ class MongoDBSync(object):
                 schema = extract_pymongo_client_schema(client, [self.db], [collection])
                 mapping = mongo_schema_to_mapping(schema)
                 t, created = Table.objects.get_or_create(database=self.database, name=collection)
-                if collection not in mapping[self.db]:
+                if self.db not in mapping or collection not in mapping[self.db]:
                     continue
                 for column in mapping[self.db][collection].keys():
                     if column == 'pk':
                         continue
                     c, created = Column.objects.get_or_create(table=t, name=column)
                     c.data_type = mapping[self.db][collection][column]['type']
+                    c.is_null = True
                     c.save()
 
 
