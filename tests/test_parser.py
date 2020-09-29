@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from scripts.check import CommentParser
+from scripts.parser import CommentParser
 
 
 @pytest.mark.parametrize('comment, expected', [
