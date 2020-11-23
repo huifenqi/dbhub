@@ -111,6 +111,9 @@ STATIC_ROOT = BASE_DIR + '/../static/'
 TITLE = '[DEMO] DBHub\'s self design'
 DB_INSTANCES = []
 
+# support setting default page size. default 30
+DEFAULT_PAGE_SIZE = 30
+
 # django-admin-oauth2
 SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 

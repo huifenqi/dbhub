@@ -13,6 +13,7 @@ class ColumnListView(SingleTableMixin, FilterView):
     model = Column
     template_name = "columns.html"
     filterset_class = ColumnFilter
+    paginate_by = settings.DEFAULT_PAGE_SIZE
 
     def get_queryset(self):
         return super(ColumnListView, self).get_queryset().select_related("table")
