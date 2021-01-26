@@ -25,6 +25,10 @@ Install dependencies:
 
 `pip install -r requirements.txt`
 
+## Create default user
+
+`python manage.py createsuperuser`
+
 ## Run server
 
 `python manage.py runserver --settings=dbhub.settings.dev`
