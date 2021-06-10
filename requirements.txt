@@ -1,4 +1,4 @@
-Django==1.11.29
+Django==2.2.24
 django-autocomplete-light==3.2.10
 django-extensions==2.1.0
 django-filter==1.1.0
